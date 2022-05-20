@@ -15,6 +15,17 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            environment{
+                 def mvn = tool 'MAVEN';
+            }
+            steps{
+                withSonarQubeEnv(installationName: "sonarqube") {
+                bat "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Sonarqube-gateway"
+                }
+            }       
+        }
+
 
         stage("Build Docker"){
             steps{
