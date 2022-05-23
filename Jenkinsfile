@@ -22,7 +22,7 @@ pipeline {
             steps{
                 script{
                     withSonarQubeEnv(installationName: "sonarqube") {
-                        bat "mvn clean verify sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"}
+                        bat "mvn clean install sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"}
                 
                 
                     // sleep(5)
@@ -31,8 +31,6 @@ pipeline {
                     //     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                     // }
                 }
-
-
 
             }       
         }
