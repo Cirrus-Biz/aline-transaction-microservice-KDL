@@ -21,7 +21,7 @@ pipeline {
             }
             steps{
                 withSonarQubeEnv(installationName: "sonarqube") {
-                bat "./mvnw clean sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"
+                bat "mvnw clean sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"
                 }
             }       
         }
