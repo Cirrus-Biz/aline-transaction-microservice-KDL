@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage("Build MVN") {
             steps {
-                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn -Dmaven.test.failure.ignore=true clean install"
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
             steps{
                 script{
                     withSonarQubeEnv(installationName: "sonarqube") {
-                        bat "mvn clean sonar:sonar"}
+                        bat "mvn sonar:sonar"}
                 
                 
                     // sleep(5)
