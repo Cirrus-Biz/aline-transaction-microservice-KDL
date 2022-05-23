@@ -22,7 +22,7 @@ pipeline {
             steps{
                 script{
                     withSonarQubeEnv(installationName: "sonarqube") {
-                        bat "mvn clean sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"}
+                        bat "mvn clean verify sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"}
                 
                 
                     // sleep(5)
