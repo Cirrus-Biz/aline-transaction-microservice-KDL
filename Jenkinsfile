@@ -20,9 +20,20 @@ pipeline {
                  def mvn = tool 'MAVEN';
             }
             steps{
-                withSonarQubeEnv(installationName: "sonarqube") {
-                bat "mvnw clean sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"
+                script{
+                    withSonarQubeEnv(installationName: "sonarqube") {
+                        bat "mvnw clean sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"}
+                
+                
+                    sleep(5)
+                    def qg = waitForQualityGate()
+                    if (qg.status != "OK"){
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
                 }
+
+
+
             }       
         }
 
