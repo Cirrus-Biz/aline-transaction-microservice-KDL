@@ -25,11 +25,11 @@ pipeline {
                         bat "mvn clean sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"}
                 
                 
-                    sleep(5)
-                    def qg = waitForQualityGate()
-                    if (qg.status != "OK"){
-                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                    }
+                    // sleep(5)
+                    // def qg = waitForQualityGate()
+                    // if (qg.status != "OK"){
+                    //     error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    // }
                 }
 
 
