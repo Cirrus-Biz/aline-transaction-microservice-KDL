@@ -12,20 +12,21 @@ pipeline {
         stage("Build MVN") {
             steps {
                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                bat "mvn verify sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"
             }
         }
 
-        stage('SonarQube Analysis') {
-            // environment{
-            //      def mvn = tool 'MAVEN';
-            // }
-            steps{
-                withSonarQubeEnv(installationName: "sonarqube") {
-                bat "mvn clean install"
-                bat "mvn verify sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"
-                }
-            }       
-        }
+        // stage('SonarQube Analysis') {
+        //     environment{
+        //          def mvn = tool 'MAVEN';
+        //     }
+        //     steps{
+        //         withSonarQubeEnv(installationName: "sonarqube") {
+        //         bat "mvn clean install"
+        //         bat "mvn verify sonar:sonar -Dsonar.projectKey=Sonarqube-transaction"
+        //         }
+        //     }       
+        // }
 
 
         stage("Build Docker"){
